@@ -24,12 +24,14 @@ public class OrderController {
 	}
 
 	@PostMapping
-	public String processOrder(@Valid Order order, Errors errors) {
+	public String processOrder(Model model, @Valid Order order, Errors errors) {
+		log.info("Order submitted: " + order);
 		if (errors.hasErrors()) {
+			// TODO: how to do it better?
+			model.addAttribute("order", order);
 			return "orderForm";
 		}
 		
-		log.info("Order submitted: " + order);
 		return "redirect:/";
 	}
 }

@@ -2,3 +2,7 @@
 	float: left;
 	width: 50%;
 }
+
+.validationError {
+	color: red;
+}

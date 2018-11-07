@@ -12,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 import tacos.Ingredient;
@@ -50,8 +51,12 @@ public class DesignTacoController {
 	}
 	
 	@PostMapping
-	public String processDesign(@Valid Taco design, Errors errors) {
+	public String processDesign(Model model, @Valid Taco design, Errors errors) {
+		log.info("errors: " + errors);
 		if (errors.hasErrors()) {
+			//TODO: how to do it better? we want to show the user what he has filled
+//			showDesignForm(model);
+			model.addAttribute("design", design);
 			return "design";
 		}
 		// Save the taco design...
