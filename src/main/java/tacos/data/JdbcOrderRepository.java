@@ -66,7 +66,7 @@ public class JdbcOrderRepository implements OrderRepository{
 		Map<String, Object> values = objectMapper.convertValue(order, Map.class);
 
 		// objectMapper converts date to long which is incompatible with placedAt field in the table
-//		values.put("placedAt", order.getPlacedAt());
+		values.put("placedAt", order.getPlacedAt());
 		
 		log.info("Taco_Order: " + values);
 		

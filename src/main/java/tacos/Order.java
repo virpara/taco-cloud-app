@@ -7,6 +7,7 @@ import java.util.List;
 import javax.validation.constraints.Digits;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.CreditCardNumber;
 
@@ -28,6 +29,7 @@ public class Order {
 	@NotBlank(message = "City is required")
 	private String city;
 
+	@Size(min=2, max=2, message="State should be two characters only")
 	@NotBlank(message = "State is required")
 	private String state;
 
@@ -43,7 +45,7 @@ public class Order {
 	@Digits(integer = 3, fraction = 0, message = "Invalid CVV")
 	private String ccCVV;
 	
-	private List<Taco> tacos;
+	private List<Taco> tacos = new ArrayList<>();
 
 	public void addDesign(Taco saved) {
 		tacos.add(saved);

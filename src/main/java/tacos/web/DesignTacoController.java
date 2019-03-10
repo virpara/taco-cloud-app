@@ -62,14 +62,12 @@ public class DesignTacoController {
 			model.addAttribute(type.toString().toLowerCase(), filterByType(ingredients, type));
 		}
 		
-//		model.addAttribute("design", design()); // should this use taco() method ?
-		
 		log.info("showDesignForm model: " + model);
 		return "design";
 	}
 	
 	@PostMapping
-	public String processDesign(@Valid Taco design, Errors errors, @ModelAttribute Order order) {
+	public String processDesign(@Valid @ModelAttribute Taco design, Errors errors, @ModelAttribute Order order) {
 		log.info("processDesign errors: " + errors);
 		log.info("processDesign design: " + design);
 		log.info("processDesign order: " + order);
@@ -77,7 +75,6 @@ public class DesignTacoController {
 		if (errors.hasErrors()) {
 			//TODO: how to do it better? we want to show the user what he has filled
 //			showDesignForm(model);
-			
 			return "design";
 		}
 
