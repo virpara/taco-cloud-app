@@ -13,13 +13,13 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.servlet.ModelAndView;
 
 import lombok.extern.slf4j.Slf4j;
 import tacos.Ingredient;
 import tacos.Ingredient.Type;
 import tacos.Taco;
 import tacos.data.IngredientRepository;
+import tacos.data.TacoRepository;
 
 @Slf4j
 @Controller
@@ -27,10 +27,12 @@ import tacos.data.IngredientRepository;
 public class DesignTacoController {
 	
 	private final IngredientRepository ingredientRepo;
+	private final TacoRepository tacoRepo;
 	
 	@Autowired
-	DesignTacoController(IngredientRepository ingredientRepo) {
+	DesignTacoController(IngredientRepository ingredientRepo, TacoRepository tacoRepo) {
 		this.ingredientRepo = ingredientRepo;
+		this.tacoRepo = tacoRepo;
 	}
 	
 	@GetMapping
@@ -46,7 +48,8 @@ public class DesignTacoController {
 		}
 		
 		model.addAttribute("design", new Taco());
-
+		
+		log.info(model.toString());
 		return "design";
 	}
 	
@@ -60,7 +63,7 @@ public class DesignTacoController {
 			return "design";
 		}
 		// Save the taco design...
-		// We'll do this in chapter 3
+		tacoRepo.save(design);
 		log.info("Processing design: " + design);
 		return "redirect:/orders/current";
 	}

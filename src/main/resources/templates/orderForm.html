@@ -34,8 +34,8 @@
 		<span class="validationError" th:if="${#fields.hasErrors('state')}" th:errors="*{state}">state Error</span> <br /> 
 		
 		<label for="zip">Zip code: </label> 
-		<input type="text" th:field="*{zip}" />
-		<span class="validationError" th:if="${#fields.hasErrors('zip')}" th:errors="*{zip}">Zip code Error</span> <br />
+		<input type="text" th:field="*{deliveryZip}" />
+		<span class="validationError" th:if="${#fields.hasErrors('deliveryZip')}" th:errors="*{deliveryZip}">Zip code Error</span> <br />
 		
 		<h3>Here's how I'll pay...</h3>
 		<label for="ccNumber">Credit Card #: </label> 
